@@ -15,15 +15,15 @@ import skimage.io
 import skimage.morphology
 import skimage.exposure
 
-from jicimagelib.io import AutoName, AutoWrite
-from jicimagelib.image import Image
-from jicimagelib.util.array import (
+from jicbioimage.core.io import AutoName, AutoWrite
+from jicbioimage.core.image import Image
+from jicbioimage.core.util.array import (
     normalise,
     reduce_stack,
     dtype_contract,
 )
 
-from jicimagelib.transform import transformation
+from jicbioimage.core.transform import transformation
 
 
 __version__ = "0.4.2"
@@ -34,7 +34,7 @@ def max_intensity_projection(stack):
     """Return maximum intensity projection of a stack.
     
     :param stack: 3D array from which to project third dimension 
-    :returns: :class:`jicimagelib.image.Image`
+    :returns: :class:`jicbioimage.core.image.Image`
     """
     return reduce_stack(stack, max)
 
@@ -43,7 +43,7 @@ def min_intensity_projection(stack):
     """Return minimum intensity projection of a stack.
     
     :param stack: 3D array from which to project third dimension 
-    :returns: :class:`jicimagelib.image.Image`
+    :returns: :class:`jicbioimage.core.image.Image`
     """
     return reduce_stack(stack, min)
 
@@ -52,9 +52,9 @@ def min_intensity_projection(stack):
 def smooth_gaussian(image, sigma=1):
     """Returns Gaussian smoothed image.
 
-    :param image: numpy array or :class:`jicimagelib.image.Image`
+    :param image: numpy array or :class:`jicbioimage.core.image.Image`
     :param sigma: standard deviation
-    :returns: :class:`jicimagelib.image.Image`
+    :returns: :class:`jicbioimage.core.image.Image`
     """
     return scipy.ndimage.filters.gaussian_filter(image, sigma=sigma, mode="nearest")
 
@@ -65,7 +65,7 @@ def equalize_adaptive_clahe(image, ntiles=8, clip_limit=0.01):
     
     The return value is normalised to the range 0 to 1.
 
-    :param image: numpy array or :class:`jicimagelib.image.Image` of dtype float
+    :param image: numpy array or :class:`jicbioimage.core.image.Image` of dtype float
     :param ntiles: number of tile regions
     :param clip_limit: clipping limit in range 0 to 1,
                        higher values give more contrast
@@ -97,7 +97,7 @@ def threshold_otsu(image, multiplier=1.0):
 def remove_small_objects(image, min_size=50):
     """Remove small objects from an boolean image.
 
-    :param image: boolean numpy array or :class:`jicimagelib.image.Image`
-    :returns: boolean :class:`jicimagelib.image.Image`
+    :param image: boolean numpy array or :class:`jicbioimage.core.image.Image`
+    :returns: boolean :class:`jicbioimage.core.image.Image`
     """ 
     return skimage.morphology.remove_small_objects(image, min_size=min_size)
