@@ -7,8 +7,6 @@ try:
 except ImportError:
     pass
 
-import jicbioimage.transform
-
 # Define the test runner.
 # See also:
 # http://fgimian.github.io/blog/2014/04/27/running-nose-tests-with-plugins-using-the-python-setuptools-test-command/
@@ -23,17 +21,18 @@ class NoseTestCommand(TestCommand):
         import nose
         nose.run_exit(argv=['nosetests'])
 
+version = "0.4.2"
 readme = open('README.rst').read()
 
 setup(name='jicbioimage.transform',
       packages=['jicbioimage.transform'],
-      version=jicbioimage.transform.__version__,
+      version=version,
       description='Python package designed to make it easy to work with bio images.',
       long_description=readme,
       author='Tjelvar Olsson',
       author_email = 'tjelvar.olsson@jic.ac.uk',
       url = 'https://github.com/JIC-CSB/jicbioimage.transform',
-      download_url = 'https://github.com/JIC-CSB/jicbioimage.transform/tarball/{}'.format(jicbioimage.transform.__version__),
+      download_url = 'https://github.com/JIC-CSB/jicbioimage.transform/tarball/{}'.format(version),
       license='MIT',
       classifiers=[
         "Development Status :: 3 - Alpha",
