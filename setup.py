@@ -51,7 +51,7 @@ setup(name='jicbioimage.transform',
       keywords = ['microscopy', 'image analysis'],
       cmdclass={'test': NoseTestCommand},
       install_requires=[
-        'jicimagelib',
+        'jicbioimage.core',
         'numpy',
         'scipy',
         'scikit-image',
