@@ -1,0 +1,12 @@
+.DS_Store
+.coverage
+jicbioimage.transform.egg-info
+
+build/*
+dist/*
+docs/build/*
+requirements/build/*
+
+*.pyc
+*.swp
+
