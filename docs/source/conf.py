@@ -29,6 +29,7 @@ class Mock(MagicMock):
         return Mock()
 
 MOCK_MODULES = [
+    'jicbioimage.core',
     'numpy',
     'scipy',
     'skimage',
