@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# jicbioimage.tranform documentation build configuration file, created by
+# jicbioimage.transform documentation build configuration file, created by
 # sphinx-quickstart on Wed Aug 26 09:00:45 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -51,7 +51,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'jicbioimage.tranform'
+project = u'jicbioimage.transform'
 copyright = u'2015, Tjelvar Olsson and Matthew Hartley'
 author = u'Tjelvar Olsson and Matthew Hartley'
 
@@ -217,7 +217,7 @@ html_static_path = ['_static']
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'jicbioimagetranformdoc'
+htmlhelp_basename = 'jicbioimagetransformdoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -239,7 +239,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'jicbioimagetranform.tex', u'jicbioimage.tranform Documentation',
+  (master_doc, 'jicbioimagetransform.tex', u'jicbioimage.transform Documentation',
    u'Tjelvar Olsson and Matthew Hartley', 'manual'),
 ]
 
@@ -269,7 +269,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'jicbioimagetranform', u'jicbioimage.tranform Documentation',
+    (master_doc, 'jicbioimagetransform', u'jicbioimage.transform Documentation',
      [author], 1)
 ]
 
@@ -283,8 +283,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  (master_doc, 'jicbioimagetranform', u'jicbioimage.tranform Documentation',
-   author, 'jicbioimagetranform', 'One line description of project.',
+  (master_doc, 'jicbioimagetransform', u'jicbioimage.transform Documentation',
+   author, 'jicbioimagetransform', 'One line description of project.',
    'Miscellaneous'),
 ]
 

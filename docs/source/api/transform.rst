@@ -1,5 +1,5 @@
-:mod:`jicbioimage.tranform`
-===========================
+:mod:`jicbioimage.transform`
+============================
 
 .. automodule:: jicbioimage.transform
    :members:

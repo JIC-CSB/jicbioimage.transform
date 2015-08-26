@@ -87,9 +87,9 @@ qthelp:
 	@echo
 	@echo "Build finished; now you can run "qcollectiongenerator" with the" \
 	      ".qhcp project file in $(BUILDDIR)/qthelp, like this:"
-	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/jicbioimagetranform.qhcp"
+	@echo "# qcollectiongenerator $(BUILDDIR)/qthelp/jicbioimagetransform.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/jicbioimagetranform.qhc"
+	@echo "# assistant -collectionFile $(BUILDDIR)/qthelp/jicbioimagetransform.qhc"
 
 applehelp:
 	$(SPHINXBUILD) -b applehelp $(ALLSPHINXOPTS) $(BUILDDIR)/applehelp
@@ -104,8 +104,8 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/jicbioimagetranform"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/jicbioimagetranform"
+	@echo "# mkdir -p $$HOME/.local/share/devhelp/jicbioimagetransform"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/jicbioimagetransform"
 	@echo "# devhelp"
 
 epub:
