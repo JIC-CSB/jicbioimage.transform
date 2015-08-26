@@ -1,8 +1,7 @@
-Table of contents
+API documentation
 =================
 
 .. toctree::
    :maxdepth: 2
 
-   readme
-   api
+   api/transform
