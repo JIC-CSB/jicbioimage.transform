@@ -25,7 +25,7 @@ version = "0.4.3"
 readme = open('README.rst').read()
 
 setup(name='jicbioimage.transform',
-      packages=['jicbioimage.transform'],
+      packages=['jicbioimage', 'jicbioimage.transform'],
       version=version,
       description='Python package designed to make it easy to work with bio images.',
       long_description=readme,
