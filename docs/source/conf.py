@@ -29,11 +29,11 @@ class Mock(MagicMock):
         return Mock()
 
 MOCK_MODULES = [
-    'jicbioimage.core',
-    'numpy',
-    'scipy',
-    'skimage',
-    'matplotlib',
+#   'jicbioimage.core',
+#   'numpy',
+#   'scipy',
+#   'skimage',
+#   'matplotlib',
 ]
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
