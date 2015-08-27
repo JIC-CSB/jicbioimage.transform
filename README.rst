@@ -21,7 +21,7 @@ The ``jicbioimage.transform`` Python package
 The ``jicbioimage.transform`` Python package provides a set of standard
 image transformations to the ``jicbioimage`` namespace package.
 
-- Documentation: http://jicbioimage.readthedocs.org
+- Documentation: http://jicbioimagetransform.readthedocs.org
 - GitHub: https://github.com/JIC-CSB/jicbioimage.transform
 - PyPI: https://pypi.python.org/pypi/jicbioimage.transform
 - Free software: MIT License
