@@ -26,7 +26,7 @@ from jicbioimage.core.util.array import (
 from jicbioimage.core.transform import transformation
 
 
-__version__ = "0.4.4"
+__version__ = "0.4.5"
 
 
 @transformation
