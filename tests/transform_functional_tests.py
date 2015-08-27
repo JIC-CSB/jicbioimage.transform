@@ -13,20 +13,20 @@ TMP_DIR = os.path.join(HERE, 'tmp')
 class GeneralPurposeTransoformTests(unittest.TestCase):
 
     def setUp(self):
-        from jicimagelib.io import AutoName
+        from jicbioimage.core.io import AutoName
         AutoName.count = 0
         AutoName.directory = TMP_DIR
         if not os.path.isdir(TMP_DIR):
             os.mkdir(TMP_DIR)
 
     def tearDown(self):
-        from jicimagelib.io import AutoName
+        from jicbioimage.core.io import AutoName
         AutoName.count = 0
         shutil.rmtree(TMP_DIR)
 
     def test_max_intensity_projection(self):
         from jicbioimage.transform import max_intensity_projection
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
         slice0 = np.array(
             [[ 0, 1, 2],
              [ 0, 1, 2],
@@ -46,7 +46,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         
     def test_min_intensity_projection(self):
         from jicbioimage.transform import min_intensity_projection
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
         slice0 = np.array(
             [[ 0, 1, 2],
              [ 0, 1, 2],
@@ -66,7 +66,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         
     def test_smooth_gaussian(self):
         from jicbioimage.transform import smooth_gaussian
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
         array = np.array(
             [[ 0.,  0.,  0.],
              [ 0.,  1.,  0.],
@@ -85,7 +85,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
 
     def test_equalize_adaptive(self):
         from jicbioimage.transform import equalize_adaptive_clahe
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
         array = np.array(
             [[ 2., 2., 1., 1., 4., 4.],
              [ 2., 1., 1., 1., 1., 4.],
@@ -101,7 +101,6 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
              [ 1., 0., 0., 0., 0., 1.],
              [ 1., 1., 0., 0., 1., 1.]], dtype=np.float)
         equalised = equalize_adaptive_clahe(array, ntiles=2)
-        print equalised
         self.assertTrue( np.array_equal(expected, equalised) )
         self.assertTrue( isinstance(equalised, Image) )
 
@@ -112,7 +111,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
 
     def test_threshold_otsu(self):
         from jicbioimage.transform import threshold_otsu
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
 
         # Test with uint8.
         array = np.array(
@@ -150,7 +149,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
 
     def test_remove_small_objects(self):
         from jicbioimage.transform import remove_small_objects
-        from jicimagelib.image import Image
+        from jicbioimage.core.image import Image
         array = np.array(
             [[ 0,  0,  0, 0, 1],
              [ 0,  1,  1, 0, 0],
