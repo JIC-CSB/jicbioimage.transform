@@ -32,3 +32,18 @@ Features
 - Built in functionality for generating audit trails of the image transforms
   applied
 - Works with Python 2.7, 3.3 and 3.4
+
+Related packages
+----------------
+
+``jicbioimage``
+^^^^^^^^^^^^^^^
+
+- Documentation: http://jicbioimage.readthedocs.org
+- GitHub: https://github.com/JIC-CSB/jicbioimage
+
+``jicbioimage.core``
+^^^^^^^^^^^^^^^^^^^^
+
+- Documentation: http://jicbioimagecore.readthedocs.org
+- GitHub: https://github.com/JIC-CSB/jicbioimage.core
