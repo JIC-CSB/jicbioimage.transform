@@ -52,3 +52,9 @@ Related packages
 
 - Documentation: http://jicbioimagecore.readthedocs.org
 - GitHub: https://github.com/JIC-CSB/jicbioimage.core
+
+``jicbioimage.illustrate``
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Documentation: http://jicbioimageillustrate.readthedocs.org
+- GitHub: https://github.com/JIC-CSB/jicbioimage.illustrate
