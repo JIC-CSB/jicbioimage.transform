@@ -77,16 +77,15 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
              [0, 1, 2],
              [0, 1, 2]], dtype=np.uint8)
         stack = np.dstack([slice0, slice1])
-#       expected = np.array(
-#           [[0, 0, 1],
-#            [0, 1, 1],
-#            [1, 1, 2]], dtype=np.uint8)
-        expected = np.mean(stack, axis=2)
+        expected = np.array(
+            [[0, 0, 1],
+             [0, 1, 1],
+             [1, 1, 2]], dtype=np.uint8)
         mean_projection = mean_intensity_projection(stack)
         self.assertTrue(np.array_equal(expected, mean_projection))
         self.assertTrue(isinstance(mean_projection, Image))
 
-    def test_mean_intensity_projection_uint8(self):
+    def test_mean_intensity_projection_float(self):
         from jicbioimage.transform import mean_intensity_projection
         from jicbioimage.core.image import Image
         slice0 = np.array(
@@ -102,6 +101,30 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         mean_projection = mean_intensity_projection(stack)
         self.assertTrue(np.array_equal(expected, mean_projection))
         self.assertTrue(isinstance(mean_projection, Image))
+
+    def test_median_intensity_projection_uint8(self):
+        from jicbioimage.transform import median_intensity_projection
+        from jicbioimage.core.image import Image
+        slice0 = np.array(
+            [[0, 0, 0],
+             [1, 1, 1],
+             [2, 2, 2]], dtype=np.uint8)
+        slice1 = np.array(
+            [[0, 0, 0],
+             [1, 1, 1],
+             [2, 2, 2]], dtype=np.uint8)
+        slice2 = np.array(
+            [[0, 1, 2],
+             [0, 1, 2],
+             [0, 1, 2]], dtype=np.uint8)
+        stack = np.dstack([slice0, slice1, slice2])
+        expected = np.array(
+            [[0, 0, 0],
+             [1, 1, 1],
+             [2, 2, 2]], dtype=np.uint8)
+        median_projection = median_intensity_projection(stack)
+        self.assertTrue(np.array_equal(expected, median_projection))
+        self.assertTrue(isinstance(median_projection, Image))
 
     def test_smooth_gaussian(self):
         from jicbioimage.transform import smooth_gaussian
