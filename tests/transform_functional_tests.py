@@ -403,7 +403,6 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
              [0, 0.25, 0.55901699, 0, 0, 0, 0],
              [0, 0, 0, 0, 0, 0, 0]], dtype=np.float)
         edges = find_edges_sobel(array, mask=mask)
-        print edges
         self.assertTrue(np.allclose(expected, edges))
 
 if __name__ == '__main__':

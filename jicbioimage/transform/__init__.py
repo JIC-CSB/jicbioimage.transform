@@ -12,7 +12,7 @@ import scipy.ndimage.filters
 import skimage.io
 import skimage.morphology
 import skimage.exposure
-import skimage.filter
+import skimage.filters
 
 from jicbioimage.core.util.array import (
     normalise,
