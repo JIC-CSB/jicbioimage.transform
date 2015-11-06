@@ -151,4 +151,22 @@ def invert(image):
 @transformation
 @dtype_contract(input_dtype=bool, output_dtype=bool)
 def dilate_binary(image, selem=None):
+    """Return dilated image.
+
+    :param image: :class:`jicbioimage.core.image.Image`
+    :param selem: neighborhood expressed as 1's and 0's, default is a cross
+    :returns: dilated image
+    """
     return skimage.morphology.binary_dilation(image, selem)
+
+
+@transformation
+@dtype_contract(input_dtype=bool, output_dtype=bool)
+def erode_binary(image, selem=None):
+    """Return eroded image.
+
+    :param image: :class:`jicbioimage.core.image.Image`
+    :param selem: neighborhood expressed as 1's and 0's, default is a cross
+    :returns: eroded image
+    """
+    return skimage.morphology.binary_erosion(image, selem)

@@ -308,5 +308,50 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         dilated = dilate_binary(array, selem=selem)
         self.assertTrue(np.array_equal(expected, dilated))
 
+    def test_erode_binary(self):
+        from jicbioimage.transform import erode_binary
+        from jicbioimage.core.image import Image
+        array = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  0,  1, 0, 0],
+             [0,  1,  1, 1, 0],
+             [0,  0,  1, 0, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        expected = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  1, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        eroded = erode_binary(array)
+        self.assertTrue(np.array_equal(expected, eroded))
+        self.assertTrue(isinstance(eroded, Image))
+
+        # The erode_binary function only makes sense on dtype bool.
+        with self.assertRaises(TypeError):
+            erode_binary(array.astype(np.uint8))
+
+    def test_erode_binary_with_selem(self):
+        from jicbioimage.transform import erode_binary
+        selem = np.ones((3, 3))
+        array = np.array(
+            [[0,  0,  0, 0,  0, 0, 0],
+             [0,  1,  0, 1,  1, 1, 0],
+             [0,  1,  1, 1,  1, 1, 0],
+             [0,  1,  1, 1,  1, 1, 0],
+             [0,  1,  1, 1,  1, 1, 0],
+             [0,  1,  1, 1,  1, 1, 0],
+             [0,  0,  0, 0,  0, 0, 0]], dtype=np.bool)
+        expected = np.array(
+            [[0,  0,  0, 0,  0, 0, 0],
+             [0,  0,  0, 0,  0, 0, 0],
+             [0,  0,  0, 0,  1, 0, 0],
+             [0,  0,  1, 1,  1, 0, 0],
+             [0,  0,  1, 1,  1, 0, 0],
+             [0,  0,  0, 0,  0, 0, 0],
+             [0,  0,  0, 0,  0, 0, 0]], dtype=np.bool)
+        eroded = erode_binary(array, selem=selem)
+        self.assertTrue(np.array_equal(expected, eroded))
+
 if __name__ == '__main__':
     unittest.main()
