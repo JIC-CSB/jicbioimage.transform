@@ -239,7 +239,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
 
         # The smooth_gaussian function only makes sense on dtype np.bool.
         with self.assertRaises(TypeError):
-            smoothed = remove_small_objects(array.astype(np.uint8))
+            remove_small_objects(array.astype(np.uint8))
 
     def test_invert_bool(self):
         from jicbioimage.transform import invert
@@ -267,6 +267,46 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         self.assertTrue(np.array_equal(expected, inverted))
         self.assertTrue(isinstance(inverted, Image))
 
+    def test_dilate_binary(self):
+        from jicbioimage.transform import dilate_binary
+        from jicbioimage.core.image import Image
+        array = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  1, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        expected = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  0,  1, 0, 0],
+             [0,  1,  1, 1, 0],
+             [0,  0,  1, 0, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        dilated = dilate_binary(array)
+        self.assertTrue(np.array_equal(expected, dilated))
+        self.assertTrue(isinstance(dilated, Image))
+
+        # The dilate_binary function only makes sense on dtype bool.
+        with self.assertRaises(TypeError):
+            dilate_binary(array.astype(np.uint8))
+
+    def test_dilate_binary_with_selem(self):
+        from jicbioimage.transform import dilate_binary
+        selem = np.ones((3, 3))
+        array = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  1, 0, 0],
+             [0,  0,  0, 0, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        expected = np.array(
+            [[0,  0,  0, 0, 0],
+             [0,  1,  1, 1, 0],
+             [0,  1,  1, 1, 0],
+             [0,  1,  1, 1, 0],
+             [0,  0,  0, 0, 0]], dtype=np.bool)
+        dilated = dilate_binary(array, selem=selem)
+        self.assertTrue(np.array_equal(expected, dilated))
 
 if __name__ == '__main__':
     unittest.main()

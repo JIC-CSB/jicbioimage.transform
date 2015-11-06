@@ -54,6 +54,7 @@ def mean_intensity_projection(stack):
     """
     return reduce_stack(stack, np.mean)
 
+
 @transformation
 def median_intensity_projection(stack):
     """Return mean intensity projection of a stack.
@@ -145,3 +146,9 @@ def invert(image):
     maximum = np.iinfo(image.dtype).max
     maximum_array = np.ones(image.shape, dtype=image.dtype) * maximum
     return maximum_array - image
+
+
+@transformation
+@dtype_contract(input_dtype=bool, output_dtype=bool)
+def dilate_binary(image, selem=None):
+    return skimage.morphology.binary_dilation(image, selem)
