@@ -180,6 +180,32 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             smoothed = remove_small_objects(array.astype(np.uint8))
 
+    def test_invert_bool(self):
+        from jicbioimage.transform import invert
+        from jicbioimage.core.image import Image
+        array = np.array(
+            [[1,  1,  1],
+             [0,  0,  0]], dtype=np.bool)
+        expected = np.array(
+            [[0,  0,  0],
+             [1,  1,  1]], dtype=np.bool)
+        inverted = invert(array)
+        self.assertTrue(np.array_equal(expected, inverted))
+        self.assertTrue(isinstance(inverted, Image))
+
+    def test_invert_uint8(self):
+        from jicbioimage.transform import invert
+        from jicbioimage.core.image import Image
+        array = np.array(
+            [[1,  1,  1],
+             [0,  0,  0]], dtype=np.uint8)
+        expected = np.array(
+            [[254,  254,  254],
+             [255,  255,  255]], dtype=np.uint8)
+        inverted = invert(array)
+        self.assertTrue(np.array_equal(expected, inverted))
+        self.assertTrue(isinstance(inverted, Image))
+
 
 if __name__ == '__main__':
     unittest.main()
