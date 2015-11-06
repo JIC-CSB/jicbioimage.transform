@@ -12,6 +12,7 @@ import scipy.ndimage.filters
 import skimage.io
 import skimage.morphology
 import skimage.exposure
+import skimage.filter
 
 from jicbioimage.core.util.array import (
     normalise,
@@ -170,3 +171,14 @@ def erode_binary(image, selem=None):
     :returns: eroded image
     """
     return skimage.morphology.binary_erosion(image, selem)
+
+@transformation
+@dtype_contract(output_dtype=np.float)
+def find_edges_sobel(image, mask=None):
+    """Return edges detected using the Sobel method.
+
+    :param image: :class:`jicbioimage.core.image.Image`
+    :param mask: Optional mask indicating regions to ignore
+    :returns: eroded image
+    """
+    return skimage.filters.sobel(image, mask=mask)

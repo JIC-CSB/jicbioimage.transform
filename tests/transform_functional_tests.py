@@ -237,7 +237,7 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         no_small = remove_small_objects(array, min_size=4, connectivity=2)
         self.assertTrue(np.array_equal(expected_con2, no_small))
 
-        # The smooth_gaussian function only makes sense on dtype np.bool.
+        # The remove_small_objects function only makes sense on dtype np.bool.
         with self.assertRaises(TypeError):
             remove_small_objects(array.astype(np.uint8))
 
@@ -352,6 +352,59 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
              [0,  0,  0, 0,  0, 0, 0]], dtype=np.bool)
         eroded = erode_binary(array, selem=selem)
         self.assertTrue(np.array_equal(expected, eroded))
+
+    def test_find_edges_sobel(self):
+        from jicbioimage.transform import find_edges_sobel
+        from jicbioimage.core.image import Image
+        array = np.array(
+            [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0]], dtype=np.uint8)
+        expected = np.array(
+            [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0.25, 0.55901699, 0.70710678, 0.55901699, 0.25, 0],
+             [0, 0.55901699, 0.75, 0.70710678, 0.75, 0.55901699, 0],
+             [0, 0.70710678, 0.70710678,    0, 0.70710678, 0.70710678, 0],
+             [0, 0.55901699, 0.75, 0.70710678, 0.75, 0.55901699, 0],
+             [0, 0.25, 0.55901699, 0.70710678, 0.55901699, 0.25, 0],
+             [0, 0, 0, 0, 0, 0, 0]], dtype=np.float)
+        edges = find_edges_sobel(array)
+        self.assertTrue(np.allclose(expected, edges))
+        self.assertTrue(isinstance(edges, Image))
+
+    def test_find_edges_sobel_with_mask(self):
+        from jicbioimage.transform import find_edges_sobel
+        mask = np.array(
+            [[1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 1, 1, 1],
+             [1, 1, 1, 1, 0, 0, 0],
+             [1, 1, 1, 1, 0, 0, 0],
+             [1, 1, 1, 1, 0, 0, 0]], dtype=np.uint8)
+        array = np.array(
+            [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 255, 255, 255, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0]], dtype=np.uint8)
+        expected = np.array(
+            [[0, 0, 0, 0, 0, 0, 0],
+             [0, 0.25, 0.55901699, 0.70710678, 0.55901699, 0.25, 0],
+             [0, 0.55901699, 0.75, 0.70710678, 0.75, 0.55901699, 0],
+             [0, 0.70710678, 0.70710678,    0, 0, 0, 0],
+             [0, 0.55901699, 0.75, 0, 0, 0, 0],
+             [0, 0.25, 0.55901699, 0, 0, 0, 0],
+             [0, 0, 0, 0, 0, 0, 0]], dtype=np.float)
+        edges = find_edges_sobel(array, mask=mask)
+        print edges
+        self.assertTrue(np.allclose(expected, edges))
 
 if __name__ == '__main__':
     unittest.main()
