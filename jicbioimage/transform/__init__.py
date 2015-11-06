@@ -46,6 +46,17 @@ def min_intensity_projection(stack):
 
 
 @transformation
+def mean_intensity_projection(stack):
+    """Return mean intensity projection of a stack.
+
+
+    :param stack: 3D array from which to project third dimension
+    :returns: :class:`jicbioimage.core.image.Image`
+    """
+    return reduce_stack(stack, np.mean)
+
+
+@transformation
 @dtype_contract(input_dtype=np.float, output_dtype=np.float)
 def smooth_gaussian(image, sigma=1):
     """Returns Gaussian smoothed image.
