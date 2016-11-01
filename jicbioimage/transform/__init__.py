@@ -81,36 +81,6 @@ def smooth_gaussian(image, sigma=1):
 
 
 @transformation
-@dtype_contract(output_dtype=np.float)
-def equalize_adaptive_clahe(image, ntiles=8, clip_limit=0.01):
-    """Return contrast limited adaptive histogram equalized image.
-
-    The return value is normalised to the range 0 to 1.
-
-    :param image: numpy array or :class:`jicbioimage.core.image.Image`
-                  of dtype float
-    :param ntiles: number of tile regions
-    :param clip_limit: clipping limit in range 0 to 1,
-                       higher values give more contrast
-    """
-    # Convert input for skimage.
-    skimage_float_im = normalise(image)
-
-    if np.all(skimage_float_im):
-        raise(RuntimeError("Cannot equalise when there is no variation."))
-
-    normalised = skimage.exposure.equalize_adapthist(skimage_float_im,
-                                                     ntiles_x=ntiles,
-                                                     ntiles_y=ntiles,
-                                                     clip_limit=clip_limit)
-
-    assert np.max(normalised) == 1.0
-    assert np.min(normalised) == 0.0
-
-    return normalised
-
-
-@transformation
 @dtype_contract(output_dtype=np.bool)
 def threshold_otsu(image, multiplier=1.0):
     """Return image thresholded using Otsu's method.

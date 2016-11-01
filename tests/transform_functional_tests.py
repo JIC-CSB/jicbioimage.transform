@@ -145,32 +145,6 @@ class GeneralPurposeTransoformTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             smoothed = smooth_gaussian(array.astype(np.uint8))
 
-    def test_equalize_adaptive(self):
-        from jicbioimage.transform import equalize_adaptive_clahe
-        from jicbioimage.core.image import Image
-        array = np.array(
-            [[2., 2., 1., 1., 4., 4.],
-             [2., 1., 1., 1., 1., 4.],
-             [1., 1., 1., 1., 1., 1.],
-             [1., 1., 1., 1., 1., 1.],
-             [6., 1., 1., 1., 1., 8.],
-             [6., 6., 1., 1., 8., 8.]], dtype=np.uint8)
-        expected = np.array(
-            [[1., 1., 0., 0., 1., 1.],
-             [1., 0., 0., 0., 0., 1.],
-             [0., 0., 0., 0., 0., 0.],
-             [0., 0., 0., 0., 0., 0.],
-             [1., 0., 0., 0., 0., 1.],
-             [1., 1., 0., 0., 1., 1.]], dtype=np.float)
-        equalised = equalize_adaptive_clahe(array, ntiles=2)
-        self.assertTrue(np.array_equal(expected, equalised))
-        self.assertTrue(isinstance(equalised, Image))
-
-        # Cannot equalise an image with no variation.
-        with self.assertRaises(RuntimeError):
-            array = np.ones((6, 6))
-            equalised = equalize_adaptive_clahe(array, ntiles=2)
-
     def test_threshold_otsu(self):
         from jicbioimage.transform import threshold_otsu
         from jicbioimage.core.image import Image
